@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1622
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCSharpBasics", "TestBasics\TestCSharpBasics.csproj", "{511DF0F7-2AE3-4764-98BA-5805EA761B94}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLog4Net", "TestLog4Net\TestLog4Net.csproj", "{786E38FD-624D-47C0-8A1C-D872189CE38D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cpp播放器与状态模式", "Cpp播放器与状态模式\Cpp播放器与状态模式.vcxproj", "{1FE2C82D-86E5-4C95-9FF1-AD8FF99FB4D8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCppSTL", "TestCppSTL\TestCppSTL.vcxproj", "{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +193,18 @@ Global
 		{1FE2C82D-86E5-4C95-9FF1-AD8FF99FB4D8}.Release|x64.Build.0 = Release|x64
 		{1FE2C82D-86E5-4C95-9FF1-AD8FF99FB4D8}.Release|x86.ActiveCfg = Release|Win32
 		{1FE2C82D-86E5-4C95-9FF1-AD8FF99FB4D8}.Release|x86.Build.0 = Release|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|Any CPU.Build.0 = Debug|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|x64.ActiveCfg = Debug|x64
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|x64.Build.0 = Debug|x64
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Debug|x86.Build.0 = Debug|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|Any CPU.ActiveCfg = Release|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|Any CPU.Build.0 = Release|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|x64.ActiveCfg = Release|x64
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|x64.Build.0 = Release|x64
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|x86.ActiveCfg = Release|Win32
+		{CD5FFFE4-2928-4227-B45A-7E9C25DFE5B8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

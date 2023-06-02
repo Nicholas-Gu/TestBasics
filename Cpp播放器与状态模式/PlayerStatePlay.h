@@ -1,5 +1,5 @@
 #pragma once
-#include "IPlayerStatet.h"
+#include "IPlayerState.h"
 
 class PlayerStatePlay : public IPlayerState
 {

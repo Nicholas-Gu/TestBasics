@@ -87,7 +87,7 @@ namespace TestBasics
         public async void TaskMethod3()
         {
             //Task.Delay方法只会延缓异步方法中后续部分执行时间，当程序执行到await表达时，一方面会立即返回调用方法，执行调用方法中的剩余部分，这一部分程序的执行不会延长。另一方面根据Delay()方法中的参数，延时对异步方法中后续部分的执行。
-            await Task.Delay(5000);
+            await Task.Delay(5000); //延缓后续代码的执行
             Console.WriteLine("执行异步方法");
             for (int i = 0; i < 10; i++)
             {
@@ -496,7 +496,7 @@ namespace TestBasics
 
             //Console.WriteLine($"Main 线程3的ID为{ Thread.CurrentThread.ManagedThreadId}");
             //Task2 task2 = new Task2();
-            ////task2.TaskMethod2();
+            //task2.TaskMethod2();
             //Console.WriteLine("主线程执行其他任务...");
             //task2.TaskMethod3();
             //Console.WriteLine("主线程执行其他处理...");
@@ -812,7 +812,7 @@ namespace TestBasics
             //StruA strua = new StruA();
             //Console.WriteLine($"{strua.a}, {strua.b}");
 
-            //控制台输出的闪烁、转动
+            ////控制台输出的闪烁、转动
             //Console.Write("Working... ");
             //int spinIndex = 0;
             //while (true)
@@ -861,9 +861,123 @@ namespace TestBasics
             string str = "AAAaxx";
 
             //Console.WriteLine("AAAAxx".TrimEnd("min".ToCharArray()));
-            Console.WriteLine(str.Remove(str.LastIndexOf("xx")).Remove(str.LastIndexOf("cc")));
+            //Console.WriteLine(str.Remove(str.LastIndexOf("xx")).Remove(str.LastIndexOf("cc")));
+
+            Console.WriteLine(str);
+
+
+            ////Span<T>表示任意内存的连续区域
+            //var array = new byte[100];
+            //var arraySpan = new Span<byte>(array);
+            //byte data = 0;
+            //for (int ctr = 0; ctr < arraySpan.Length; ctr++)
+            //{
+            //    arraySpan[ctr] = data++;
+            //}
+
+            //int arraySum = 0;
+            //foreach (var value in array)
+            //    arraySum += value;
+
+            //Console.WriteLine($"The sum is {arraySum}");
+
+
+            //var arr = new byte[10];
+            //Span<byte> bytes = arr; // Implicit cast(隐式转换) from T[] to Span<T>
+
+            //IntPtr ptr = Marshal.AllocHGlobal(1);
+            //try
+            //{
+            //    Span<byte> bytes;
+            //    unsafe { bytes = new Span<byte>((byte*)ptr, 1); }
+            //    bytes[0] = 42;
+            //    Assert.Equal(42, bytes[0]);
+            //    Assert.Equal(Marshal.ReadByte(ptr), bytes[0]);
+            //    bytes[1] = 43; // Throws IndexOutOfRangeException
+            //}
+            //finally { Marshal.FreeHGlobal(ptr); }
+
+
+            //unsafe code - C#中操作指针, 不安全代码或非托管代码是指使用了指针变量的代码块
+
+            ////async和await
+            //M1();
+
+            //unSafeFunc();
+
+            //int[] value = new int[2] { 1, 2 };
+            //fixed (int* p = &value)
+            //{
+            //    add(p);
+            //}
+
+
+            PredictVideoOut a = new PredictVideoOut();
+            Console.WriteLine(a.ToString());
+            
+
 
             Console.ReadKey();
+        }
+
+       ///unsafe代码块与作用域
+        //1.作用域是一个整个函数
+        public static unsafe void unSafeFunc()
+        {
+            int* numPoint;
+            int numA = 10, numB = 20;
+            numPoint = &numA;
+            Console.WriteLine($"Address:{(int)numPoint}");
+            Console.WriteLine($"Value:{*numPoint}");
+
+            numPoint = &numB;
+            Console.WriteLine($"Address:{(int)numPoint}");
+            Console.WriteLine($"Value:{*numPoint}");
+
+            //静态方法中打印方法名
+            Console.WriteLine($"{MethodBase.GetCurrentMethod().DeclaringType.Name}- {MethodBase.GetCurrentMethod().Name}");
+        }
+        //2.作用域是大括号内
+        public void Fun2()
+        {
+            unsafe
+            {
+                int* numPoint;
+            }
+
+        }
+
+        public static unsafe void add (int* p)
+        {
+            *p += 4;
+        }
+
+
+        private static int count = 0;
+        //用async和await保证多线程下静态变量count安全
+        public async static void M1()
+        {
+            //async and await将多个线程进行串行处理
+            //等到await之后的语句执行完成后
+            //才执行本线程的其他语句
+            //step 2
+            await Task.Run(new Action(M2));
+            Console.WriteLine("M1 Current Thread ID is {0}", System.Threading.Thread.CurrentThread.ManagedThreadId);
+            //step 6
+            count++;
+            //step 7
+            Console.WriteLine("M1 Step is {0}", count);
+        }
+
+        public static void M2()
+        {
+            Console.WriteLine("M2 Current Thread ID is {0}", System.Threading.Thread.CurrentThread.ManagedThreadId);
+            //step 3
+            System.Threading.Thread.Sleep(3000);
+            //step 4
+            count++;
+            //step 5
+            Console.WriteLine("M2 Step is {0}", count);
         }
 
 
@@ -941,7 +1055,7 @@ namespace TestBasics
             public PredictVideoOut msg;
             public MsgInfo info;
         }
-        public sealed class PredictVideoOut { }
+        public sealed class PredictVideoOut : Object{ }
 
 
 
